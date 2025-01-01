@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'welcome_screen.dart'; // Make sure to import your WelcomeScreen
-import 'signin_screen.dart'; // Import the SignInScreen file
+import 'welcome_screen.dart'; 
+import 'signin_screen.dart'; 
+import 'signup_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Lanka Explorer',
-      debugShowCheckedModeBanner: false, // Removes the debug banner
+      debugShowCheckedModeBanner: false, 
       theme: ThemeData(
         primarySwatch: Colors.cyan,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -19,12 +20,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         brightness: Brightness.dark,
       ),
-      // Define the routes for navigation
+      
       initialRoute: '/',
       routes: {
         '/': (context) => WelcomeScreen(),
-        '/signin': (context) => SignInScreen(), // Route for the SignIn screen
-        '/signup': (context) => Scaffold(body: Center(child: Text('Sign Up Screen - To be implemented'))),
+        '/signin': (context) => SignInScreen(), 
+        '/signup': (context) => SignUpScreen(),
       },
     );
   }
