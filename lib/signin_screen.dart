@@ -101,7 +101,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: _emailController,
                     style: TextStyle(color: Colors.black), // Black text color
                     decoration: InputDecoration(
-                      labelText: "Email, phone & username",
+                      labelText: "Email",
                       labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),

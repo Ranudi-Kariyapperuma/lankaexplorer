@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'review_and_rating_screen.dart'; 
+
 
 class HomeScreen extends StatelessWidget {
   final List<String> imgList = [
@@ -38,126 +40,125 @@ class HomeScreen extends StatelessWidget {
   ];
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: PreferredSize(
-      preferredSize: Size.fromHeight(130),
-      child: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF1B4D3E),
-                Color(0xFF74B49B),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(40),
-              bottomRight: Radius.circular(40),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 15,
-                offset: Offset(0, 5),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(130),
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF1B4D3E),
+                  Color(0xFF74B49B),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
-            ],
-          ),
-          child: Stack(
-            children: [
-              // Decorative circle in background
-              Positioned(
-                right: -30,
-                top: -20,
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 15,
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Stack(
+              children: [
+                // Decorative circle in background
+                Positioned(
+                  right: -30,
+                  top: -20,
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white.withOpacity(0.1),
+                    ),
                   ),
                 ),
-              ),
-              // Main content
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 40, 20, 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        // Added padding to move the logo slightly to the right
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30), // Move logo right
-                          child: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
+                // Main content
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 40, 20, 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          // Added padding to move the logo slightly to the right
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30), // Move logo right
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 8,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: Image.asset(
+                                'images/logo.png',
+                                height: 35,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 20), // Increased spacing for balance
+                          const Text(
+                            "LankaExplorer",
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 8,
-                                  offset: Offset(0, 3),
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(0, 2),
+                                  blurRadius: 3,
+                                  color: Colors.black26,
                                 ),
                               ],
                             ),
-                            child: Image.asset(
-                              'images/logo.png',
-                              height: 35,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Center(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text(
+                            "Get the Best Travel Experience",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontStyle: FontStyle.italic,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20), // Increased spacing for balance
-                        const Text(
-                          "LankaExplorer",
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(0, 2),
-                                blurRadius: 3,
-                                color: Colors.black26,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Center(
-                      child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
-                      "Get the Best Travel Experience",
-                       style: TextStyle(
-                       fontSize: 16,
-                       color: Colors.white,
-                       fontStyle: FontStyle.italic,
-                       letterSpacing: 0.5,
-                         ),
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -267,40 +268,39 @@ Widget build(BuildContext context) {
               ),
             ),
             const SizedBox(height: 10),
-           ListView.builder(
-           shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-             itemCount: places.length,
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: places.length,
               itemBuilder: (context, index) {
-           return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: Card(
-              elevation: 5,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: ListTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              places[index]["image"]!,  // Use the dynamic image here
-              width: 60,
-              height: 60,
-              fit: BoxFit.cover,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: ListTile(
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          places[index]["image"]!,  // Use the dynamic image here
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      title: Text(places[index]["name"]!),
+                      subtitle: Text(places[index]["description"]!),
+                      trailing: const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
-          ),
-          title: Text(places[index]["name"]!),
-          subtitle: Text(places[index]["description"]!),
-          trailing: const Icon(
-            Icons.star,
-            color: Colors.amber,
-          ),
-        ),
-      ),
-    );
-  },
-),
-
           ],
         ),
       ),
@@ -308,14 +308,23 @@ Widget build(BuildContext context) {
       // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-         BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
-         BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Reviews'),
-         BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Reviews'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
         selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          if (index == 2) {
+            // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+            );
+          }
+        },
       ),
     );
   }

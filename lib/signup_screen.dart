@@ -264,6 +264,7 @@ Future<void> _signUp() async {
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         // Navigate to Login Page
+                                        Navigator.pushNamed(context, '/signin');
                                       },
                                   ),
                                 ],

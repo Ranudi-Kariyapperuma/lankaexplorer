@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart'; // Import Firebase Core
-import 'welcome_screen.dart'; // Ensure this file exists and is correctly implemented
-import 'signin_screen.dart'; // Ensure this file exists and is correctly implemented
-import 'signup_screen.dart'; // Ensure this file exists and is correctly implemented
-import 'home_screen.dart'; // Import the HomeScreen
+import 'package:firebase_core/firebase_core.dart'; 
+import 'welcome_screen.dart'; 
+import 'signin_screen.dart'; 
+import 'signup_screen.dart'; 
+import 'home_screen.dart';
+import 'review_and_rating_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures Flutter bindings are initialized
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/signin': (context) => SignInScreen(), // Sign-in screen
         '/signup': (context) => SignUpScreen(), // Sign-up screen
         '/home': (context) => HomeScreen(), // Home screen
+        '/review_and_rating': (context) => ReviewAndRatingScreen(title: 'Review & Rating ',), // Add route for the review and rating screen
       },
     );
   }
