@@ -10,8 +10,6 @@ LankaExplorer is a Flutter-based mobile application designed to enhance the trav
 - [🛠️ Custom Components](#custom-components)
 - [👥 Team Members](#team-members)
 - [⚙️ Installation](#installation)
-- [🚀 Usage](#usage)
-- [📜 License](#license)
 
 ## 📱 Screens
 1. 🖼️ Welcome Screen
