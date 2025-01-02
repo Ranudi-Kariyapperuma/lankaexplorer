@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'home_screen.dart';
+
 
 class ReviewAndRatingScreen extends StatefulWidget {
   const ReviewAndRatingScreen({super.key, required this.title});
@@ -31,6 +33,8 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
     },
   ];
 
+  int _selectedIndex = 2; // Default to the "Reviews" page
+
   void _submitReview() {
     if (_reviewController.text.isNotEmpty && _nameController.text.isNotEmpty && _rating > 0) {
       setState(() {
@@ -60,6 +64,29 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
     }
     return distribution;
   }
+  
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 0) {
+      // Navigate to Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } else if (index == 1) {
+      // Navigate to Favorite Screen (This is a placeholder)
+      // You can add your favorite screen logic here
+    } else if (index == 2) {
+      // Stay on the current Reviews Screen
+    } else if (index == 3) {
+      // Navigate to Settings Screen (This is a placeholder)
+      // You can add your settings screen logic here
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -282,6 +309,38 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
             ),
           ),
         ),
+      ),
+             // Bottom Navigation Bar
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex, // Set current index based on selected tab
+        onTap: _onItemTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            // Optional: Add color if needed
+            backgroundColor: _selectedIndex == 0 ? Colors.teal : Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star, color: _selectedIndex == 2 ? Colors.teal : Colors.grey), // Color the rating icon
+            label: 'Reviews',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Map',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        selectedItemColor: Colors.teal, // Set active tab color
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
