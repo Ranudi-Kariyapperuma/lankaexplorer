@@ -1,7 +1,47 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  // Sign-in method with Firebase Authentication
+  Future<void> _signIn() async {
+  setState(() {
+    _isLoading = true; // Show loading spinner
+  });
+
+  try {
+    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+    print("Signed in as: ${userCredential.user!.email}");
+    
+    // Navigate to the home screen upon successful sign-in
+    Navigator.pushReplacementNamed(context, '/home'); // Example route for home screen
+  } catch (e) {
+    print("Error: $e");
+    // Show error message on failed sign-in
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Sign-in failed. Please check your credentials.')),
+    );
+  } finally {
+    setState(() {
+      _isLoading = false; // Hide loading spinner
+    });
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +71,6 @@ class SignInScreen extends StatelessWidget {
                   top: Radius.circular(20),
                 ),
               ),
-              // Added minimum height to the white box
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height * 0.7, // Adjust as needed
               ),
@@ -59,8 +98,11 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   // Email/Phone/Username Field
                   TextField(
+                    controller: _emailController,
+                    style: TextStyle(color: Colors.black), // Black text color
                     decoration: InputDecoration(
                       labelText: "Email, phone & username",
+                      labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -69,9 +111,12 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(height: 15),
                   // Password Field
                   TextField(
+                    controller: _passwordController,
                     obscureText: true,
+                    style: TextStyle(color: Colors.black), // Black text color
                     decoration: InputDecoration(
                       labelText: "Password",
+                      labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -82,9 +127,7 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Add your sign-in logic here
-                      },
+                      onPressed: _isLoading ? null : _signIn, // Disable button when loading
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         padding: EdgeInsets.symmetric(vertical: 15),
@@ -92,14 +135,18 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Text(
-                        "Sign in",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: _isLoading
+                          ? CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              "Sign in",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -154,6 +201,7 @@ class SignInScreen extends StatelessWidget {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 // Navigate to Registration Page
+                                Navigator.pushNamed(context, '/signup');
                               },
                           ),
                         ],
