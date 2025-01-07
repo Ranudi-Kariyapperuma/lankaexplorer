@@ -241,17 +241,51 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  CategoryCard(icon: Icons.beach_access, label: "Beaches"),
-                  CategoryCard(icon: Icons.park, label: "Nature Parks"),
-                  CategoryCard(icon: Icons.history, label: "Historical Sites"),
-                  CategoryCard(icon: Icons.directions_bike, label: "City Tours"),
-                ],
-              ),
-            ),
+            // Inside your horizontal scrollable Row
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Row(
+    children: [
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+          );
+        },
+        child: CategoryCard(icon: Icons.beach_access, label: "Beaches"),
+      ),
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+          );
+        },
+        child: CategoryCard(icon: Icons.park, label: "Nature Parks"),
+      ),
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+          );
+        },
+        child: CategoryCard(icon: Icons.history, label: "Historical Sites"),
+      ),
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+          );
+        },
+        child: CategoryCard(icon: Icons.directions_bike, label: "City Tours"),
+      ),
+    ],
+  ),
+),
+
 
             const SizedBox(height: 20),
 
