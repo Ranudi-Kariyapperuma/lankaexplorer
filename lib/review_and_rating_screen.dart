@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'favorites_list_screen.dart';
 import 'home_screen.dart';
 
 
@@ -77,7 +78,10 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     } else if (index == 1) {
-      // Navigate to Favorite Screen (This is a placeholder)
+     Navigator.pushReplacement(
+        context,
+        MaterialPageRoute( builder: (context) => FavoritesListScreen(favorites: const [], favoriteDestinations: const [])),
+      ); // Navigate to Favorite Screen (This is a placeholder)
       // You can add your favorite screen logic here
     } else if (index == 2) {
       // Stay on the current Reviews Screen

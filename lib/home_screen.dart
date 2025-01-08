@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'review_and_rating_screen.dart'; 
+import 'package:lankaexplorer/destination_list_screen.dart';
+import 'favorites_list_screen.dart';
+import 'review_and_rating_screen.dart';
+import 'settings_screen.dart'; 
 
 
 class HomeScreen extends StatelessWidget {
@@ -250,7 +253,7 @@ SingleChildScrollView(
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+            MaterialPageRoute(builder: (context) => DestinationListScreen()),
           );
         },
         child: CategoryCard(icon: Icons.beach_access, label: "Beaches"),
@@ -349,18 +352,41 @@ SingleChildScrollView(
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
 
         ],
-        selectedItemColor: Colors.teal,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          if (index == 2) {
-            // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
-            );
-          }
-        },
+         selectedItemColor: Colors.teal,
+  unselectedItemColor: Colors.grey,
+  type: BottomNavigationBarType.fixed,
+  onTap: (index) {
+    if (index == 1) {
+      // Navigate to the FavoritesListScreen when the 'Favorites' tab is clicked
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FavoritesListScreen(favorites: const [], favoriteDestinations: const []
+          ),
+        ),
+      );
+    } else if (index == 2) {
+      // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ReviewAndRatingScreen(
+            title: 'Review & Rating',
+          ),
+        ),
+      );
+    }else if (index == 4) {
+      // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SettingsScreen(),
+        ),
+      );
+    }
+  },
+
+  
       ),
     );
   }

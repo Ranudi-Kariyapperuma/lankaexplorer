@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; 
+import 'destination_list_screen.dart';
 import 'welcome_screen.dart'; 
 import 'signin_screen.dart'; 
 import 'signup_screen.dart'; 
 import 'home_screen.dart';
 import 'review_and_rating_screen.dart';
+import 'settings_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures Flutter bindings are initialized
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpScreen(), // Sign-up screen
         '/home': (context) => HomeScreen(), // Home screen
         '/review_and_rating': (context) => ReviewAndRatingScreen(title: 'Review & Rating ',), // Add route for the review and rating screen
+        '/destination_list': (context) => DestinationListScreen(), // Add route for the destination list screen;
+        '/settings': (context) => SettingsScreen(), // Add route for the settings screen
       },
     );
   }
