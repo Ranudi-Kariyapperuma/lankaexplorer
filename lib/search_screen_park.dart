@@ -19,7 +19,7 @@ class _SearchScreenState extends State<SearchScreenPark> {
   @override
   void initState() {
     super.initState();
-    filteredDestinations = widget.destinations; // display all destinations
+    filteredDestinations = widget.destinations; 
   }
 
   void _filterDestinations(String query) {
