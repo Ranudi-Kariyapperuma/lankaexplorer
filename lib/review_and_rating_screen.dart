@@ -36,7 +36,7 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
     },
   ];
 
-  int _selectedIndex = 2; // Default to the "Reviews" page
+  int _selectedIndex = 2; 
 
   void _submitReview() {
     if (_reviewController.text.isNotEmpty && _nameController.text.isNotEmpty && _rating > 0) {

@@ -96,9 +96,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
  void _logOut(BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.clear();  // Clear all saved preferences
+  await prefs.clear(); 
 
-  // Correctly use Navigator with the context
+  
   Navigator.of(context).pushReplacement(
     MaterialPageRoute(builder: (context) => HomeScreen()),
   );
@@ -235,8 +235,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
 
 
-
-          // Log out button
           const Divider(color: Colors.grey),
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.red),
@@ -244,7 +242,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               'Log Out',
               style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
             ),
-            onTap: () => _logOut(context),  // Pass context here
+            onTap: () => _logOut(context),  
           ),
         ],
       ),
@@ -471,7 +469,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 }
 
 
-
+// Notification
 
 class NotificationSettings extends StatefulWidget {
   final bool notificationsEnabled;
@@ -535,7 +533,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
 
 
 
-
+// Privacy
 class PrivacySettings extends StatefulWidget {
   final bool dataSharingEnabled;
   final Function(bool) onToggle;
