@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lankaexplorer/destination_list_screen.dart';
+import 'destination_list_screen_city.dart';
+import 'destination_list_screen_history.dart';
+import 'destination_list_screen_park.dart';
 import 'favorites_list_screen.dart';
+import 'itinerary_planner_screen.dart';
 import 'review_and_rating_screen.dart';
-import 'settings_screen.dart'; 
+import 'settings_screen.dart';
+import 'transportation_screen.dart'; 
 
 
 class HomeScreen extends StatelessWidget {
@@ -262,7 +267,7 @@ SingleChildScrollView(
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+            MaterialPageRoute(builder: (context) =>   DestinationListScreenPark()),
           );
         },
         child: CategoryCard(icon: Icons.park, label: "Nature Parks"),
@@ -271,7 +276,7 @@ SingleChildScrollView(
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+            MaterialPageRoute(builder: (context) => DestinationListScreenHistory()),
           );
         },
         child: CategoryCard(icon: Icons.history, label: "Historical Sites"),
@@ -280,11 +285,20 @@ SingleChildScrollView(
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating ',)),
+            MaterialPageRoute(builder: (context) =>  DestinationListScreenCity()),
           );
         },
         child: CategoryCard(icon: Icons.directions_bike, label: "City Tours"),
       ),
+       GestureDetector(
+         onTap: () {
+           Navigator.push(
+           context,
+      MaterialPageRoute(builder: (context) => TransportationScreen()),
+    );
+  },
+  child: CategoryCard(icon: Icons.emoji_transportation, label: "Transportation"),
+),
     ],
   ),
 ),
@@ -348,7 +362,7 @@ SingleChildScrollView(
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Reviews'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: 'Itinerary Planner'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
 
         ],
@@ -361,7 +375,7 @@ SingleChildScrollView(
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => FavoritesListScreen(favorites: const [], favoriteDestinations: const []
+          builder: (context) => FavoritesListScreen(favoriteDestinations: [], favorites: [],
           ),
         ),
       );
@@ -381,6 +395,14 @@ SingleChildScrollView(
         context,
         MaterialPageRoute(
           builder: (context) => SettingsScreen(),
+        ),
+      );
+    }else if (index == 3) {
+      // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItineraryPlannerScreen(),
         ),
       );
     }

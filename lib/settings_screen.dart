@@ -2,29 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lankaexplorer/welcome_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'favorites_list_screen.dart';
+import 'home_screen.dart';
+import 'itinerary_planner_screen.dart';
+import 'review_and_rating_screen.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Settings',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal, brightness: Brightness.dark),
-        useMaterial3: true,
-      ),
-      home: const SettingsScreen(),
-    );
-  }
-}
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -34,14 +22,15 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+
+
+  
   String savedFullName = '';
   String savedEmail = '';
   bool notificationsEnabled = false;
   bool dataSharingEnabled = false;
   File? savedImageFile;
   
-  
-
    @override
   void initState() {
     super.initState();
@@ -97,6 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 controller: scrollController,
                 child: content,
               );
+              
             },
           ),
         );
@@ -104,9 +94,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _logOut() {
-    Navigator.pop(context as BuildContext);
-  }
+ void _logOut(BuildContext context) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear();  // Clear all saved preferences
+
+  // Correctly use Navigator with the context
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(builder: (context) => HomeScreen()),
+  );
+}
+
 
    @override
   Widget build(BuildContext context) {
@@ -238,7 +235,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
 
 
-          // log out button
+
+          // Log out button
           const Divider(color: Colors.grey),
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.red),
@@ -246,13 +244,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               'Log Out',
               style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
             ),
-            onTap: _logOut,
+            onTap: () => _logOut(context),  // Pass context here
           ),
-  
         ],
       ),
     );
   }
+}
+
+  
 
   
   Widget _buildSettingsContainer({
@@ -283,7 +283,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
-}
+
 
 class ProfileSettings extends StatefulWidget {
   final String initialFullName;
@@ -801,7 +801,13 @@ class AboutPage extends StatelessWidget {
             ),
           ),
         ],
+
+       
+      
       ),
+      
     );
+    
   }
 }
+

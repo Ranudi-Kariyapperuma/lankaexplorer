@@ -43,6 +43,7 @@ dependencies:
   provider: ^6.0.5
   image_picker: ^1.1.2
   shared_preferences: ^2.3.5
+ 
 
 dev_dependencies:
   flutter_test:
@@ -199,6 +200,9 @@ flutter:
       - images/kandy_2.jpg
       - images/kandy_3.jpg
       - images/kandy_4.jpg
+      - images/newyear.jpg
+      - images/kandyesala.jpg
+      - images/litterary.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

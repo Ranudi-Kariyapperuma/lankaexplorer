@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'favorites_list_screen.dart' as favorites;
-import 'search_screen_beach.dart';
+import 'favorites_list_screen.dart';
+import 'search_screen_history.dart';
 
-class DestinationListScreen extends StatefulWidget {
+class DestinationListScreenHistory extends StatefulWidget {
   @override
-  _DestinationListScreenState createState() => _DestinationListScreenState();
+  _DestinationListScreenHistoryState createState() => _DestinationListScreenHistoryState();
 }
 
-class _DestinationListScreenState extends State<DestinationListScreen> {
+class _DestinationListScreenHistoryState extends State<DestinationListScreenHistory> {
   final List<Map<String, String>> destinations = [
     {
-      'name': 'Arugambay Beach',
-      'image': 'images/arugambay_beach.jpg',
-      'description': 'Arugambay Beach is famous for its amazing surfing spots and laid-back atmosphere. The beach is a haven for surfers from around the globe, boasting some of the best waves in the region. Visitors can enjoy the tranquil environment, golden sands, and clear waters. The area also offers exciting nightlife, unique local cuisine, and charming accommodations. Beyond surfing, Arugambay provides an escape into nature with nearby lagoons, wildlife, and cultural attractions, making it a versatile destination for all travelers.'
-      
+      'name': 'Adams Peak',
+      'image': 'images/Adams_Peak_historical_sites.jpg',
+      'description': 'Adam’s Peak, also known as Sri Pada, is one of Sri Lanka’s most sacred mountains. Pilgrims from various religions visit the peak, where a footprint-shaped mark is said to belong to Lord Buddha, Shiva, or Adam, depending on the belief. The 2,243-meter tall mountain is also a UNESCO World Heritage site and is famous for its breathtaking sunrise. Visitors can trek the 5,000-step route, passing through lush forests and witnessing stunning views from the summit.'
     },
     {
-      'name': 'Jungle Beach',
-      'image': 'images/jungle_beach.jpg',
-      'description': 'Jungle Beach offers a secluded paradise surrounded by lush greenery and pristine sands. Located near Galle, this hidden gem provides a peaceful retreat away from the crowds. Visitors can enjoy crystal-clear waters perfect for swimming and snorkeling. The beach is flanked by dense forests, adding to its exotic charm. Whether you’re relaxing under the sun, exploring the jungle trails, or admiring the marine life, Jungle Beach ensures a memorable experience. It’s a perfect destination for nature lovers and adventurers.'
+      'name': 'Dambulla Viharaya',
+      'image': 'images/Dambulla_wiharaya_historical_sites.jpg',
+      'description': 'The Dambulla Cave Temple is a historic Buddhist temple located in central Sri Lanka. Known for its intricate rock paintings and statues of Buddha, it is one of the largest and best-preserved cave temples in Sri Lanka. The temple complex consists of five caves, which are adorned with stunning murals that depict the life of the Buddha. The site, a UNESCO World Heritage site, has attracted both religious pilgrims and tourists for its historical and spiritual significance.'
     },
     {
-      'name': 'Marble Beach',
-      'image': 'images/marbel_beach.jpg',
-      'description': 'Marble Beach is known for its crystal-clear waters and scenic beauty that captivate every visitor. Situated in Trincomalee, this picturesque beach offers a serene atmosphere ideal for relaxation. The soft, white sands and calm waves make it a perfect spot for swimming and picnics. With breathtaking views of the surrounding landscape, it’s a great destination for photography enthusiasts. Whether you want to bask in the sun, enjoy a romantic sunset, or explore nearby attractions, Marble Beach has something for everyone.'
+      'name': 'Rock Temple',
+      'image': 'images/gal_wiharaya_historical_sites.jpg',
+      'description': 'The Rock Temple, also known as the Gal Vihara, is a remarkable historical site in Sri Lanka. Located in Polonnaruwa, it features a series of Buddha statues carved into a massive granite rock. The most famous of these is the 14-meter long reclining Buddha. The site is a significant testament to the artistic and architectural achievements of ancient Sri Lankan civilization. It is an important place of worship and a UNESCO World Heritage site, showcasing the rich cultural heritage of the island.'
     },
     {
-      'name': 'Mirissa Beach',
-      'image': 'images/mirissa_beach.jpg',
-      'description': 'Mirissa Beach is a hotspot for whale watching and golden sunsets, making it a must-visit destination. Located in the southern province, this beach is a paradise for both adventure seekers and those looking to unwind. Visitors can embark on boat tours to witness blue whales and dolphins in their natural habitat. The golden sands and turquoise waters are perfect for swimming, sunbathing, and beach games. As the sun sets, the vibrant nightlife and seafood restaurants bring the beach to life.'
+      'name': 'Isurumuniya Temple',
+      'image': 'images/Isurumuniya_Temple_historical_sites.jpg',
+      'description': 'Isurumuniya Temple, located near Anuradhapura, is one of Sri Lanka’s most renowned ancient temples. Famous for its beautiful rock carvings, including the iconic Isurumuniya Lovers, the temple is a significant Buddhist site. The temple complex features a serene atmosphere, with a large pond and peaceful surroundings. The history of Isurumuniya dates back to the 3rd century BCE, making it a valuable cultural and historical landmark. It is also an important pilgrimage site for Buddhists around the world.'
     },
     {
-      'name': 'Mount Lavinia Beach',
-      'image': 'images/mount_lavinia_beach.jpg',
-      'description': 'Mount Lavinia Beach is a popular destination with a rich history and vibrant nightlife. Located near Colombo, this beach offers a blend of cultural heritage and modern entertainment. It’s a favorite spot for locals and tourists alike, known for its lively atmosphere and stunning ocean views. Visitors can enjoy water sports, beachside dining, and live music. The historical Mount Lavinia Hotel adds to the beach’s charm, providing a glimpse into Sri Lanka’s colonial past. It’s an ideal spot for a day trip or evening getaway.'
+      'name': 'Jaya Sri Maha Bhodiya',
+      'image': 'images/jayasirimaha_bodiya_historical_sites.jpg',
+      'description': 'Jaya Sri Maha Bodhiya, located in Anuradhapura, is one of the most revered Buddhist sites in Sri Lanka. It is home to the Sri Maha Bodhi, the oldest historically authenticated tree in the world, which is said to have been grown from a cutting of the original tree under which Buddha attained enlightenment. This sacred site attracts thousands of pilgrims who come to pay homage. The temple complex surrounding the tree includes beautiful stupas, statues, and shrines, adding to its religious and historical significance.'
     },
     {
-      'name': 'Unawatuna Beach',
-      'image': 'images/unawatuna_beach.jpg',
-      'description': 'Unawatuna Beach is loved for its calm waters, ideal for swimming and snorkeling. Situated near Galle, this beach is a family-friendly destination with a relaxed vibe. The shallow waters and coral reefs attract snorkelers and marine life enthusiasts. Unawatuna is also known for its vibrant cafes, shops, and yoga retreats. Visitors can hike to the nearby Japanese Peace Pagoda for stunning views or explore the ancient temples. Whether you’re seeking adventure or tranquility, Unawatuna Beach offers a perfect blend of both.'
+      'name': 'Sigiriya',
+      'image': 'images/sigiriya_historical_sites.jpg',
+      'description': 'Sigiriya, also known as Lion’s Rock, is a stunning ancient rock fortress located in central Sri Lanka. It is a UNESCO World Heritage site and one of the most iconic landmarks of Sri Lankan history. The fortress was built during the 5th century by King Kashyapa and is renowned for its impressive frescoes, its massive lion’s paws at the entrance, and its remarkable water gardens. Sigiriya offers panoramic views of the surrounding landscape and is a must-visit for anyone interested in Sri Lanka’s history and architecture.'
+    },
+    {
+      'name': 'Temple of the Tooth',
+      'image': 'images/Temple_of_the_Tooth_historical_site.jpg',
+      'description': 'The Temple of the Tooth, located in Kandy, is one of the most important Buddhist sites in Sri Lanka. It houses the sacred relic of Buddha’s tooth, which has great religious significance. The temple, also known as the Dalada Maligawa, is a symbol of Sri Lanka’s rich Buddhist heritage and history. Pilgrims from around the world visit this site to pay respects and participate in religious ceremonies. The surrounding complex includes beautiful gardens, museums, and stunning architecture, making it a cultural treasure for Sri Lanka.'
     },
   ];
 
-  // List to track whether the heart icon is filled for each destination
+  // Fevorites
   List<bool> isFavorited = List.filled(6, false);
   List<Map<String, String>> favoriteDestinations = [];
 
@@ -54,56 +58,49 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: const Color.fromARGB(255, 240, 240, 240)),
           onPressed: () {
-           Navigator.pop(context);
-          
+            Navigator.pop(context);
           },
         ),
         title: Center(
           child: Text(
-            'Beaches in Sri Lanka',
+            'Historical Sites in Sri Lanka',
             style: TextStyle(
               color: const Color.fromARGB(255, 255, 255, 255),
               fontWeight: FontWeight.bold,
-              fontSize: 26,
+              fontSize: 22,
             ),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 42, 126, 91),
 
 
-           actions: [
-              IconButton(
+         actions: [
+          IconButton(
             icon: Icon(Icons.favorite, color: Colors.white),
             onPressed: () {
+              // Pass the favorite destinations list to the FavoritesScreen
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => favorites.FavoritesListScreen(favoriteDestinations: favoriteDestinations, favorites: [],),
+                  builder: (context) => FavoritesListScreen(favoriteDestinations: favoriteDestinations, favorites: [],),
                 ),
               );
             },
           ),
-        
           IconButton(
-            icon: Icon(Icons.search,color: Colors.white ),
+            icon: Icon(Icons.search,color: Colors.white),
             onPressed: () {
               // Navigate to the SearchScreen
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SearchScreenBeach(destinations: destinations),
+                  builder: (context) => SearchScreenHistory(destinations: destinations),
                 ),
               );
             },
           ),
         ],
 
-
-
-        
-
-        
-        
 
       ),
       backgroundColor: Colors.black,
@@ -117,7 +114,7 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BeachDetailScreen(
+                    builder: (context) => HistoryDetailScreen(
                       name: destinations[index]['name']!,
                       image: destinations[index]['image']!,
                       description: destinations[index]['description']!,
@@ -127,7 +124,7 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 48, 47, 47), // Light ash color
+                  color: const Color.fromARGB(255, 48, 47, 47), 
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -160,7 +157,6 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
                               color: isFavorited[index] ? Colors.red : Colors.grey,
                             ),
                           ),
-                          
                           SizedBox(width: 10),
                           Text(
                             destinations[index]['name']!,
@@ -194,22 +190,23 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
 }
 
 
-class BeachDetailScreen extends StatefulWidget {
+
+class HistoryDetailScreen extends StatefulWidget {
   final String name;
   final String image;
   final String description;
 
-  BeachDetailScreen({
+  HistoryDetailScreen({
     required this.name,
     required this.image,
     required this.description,
   });
 
   @override
-  _BeachDetailScreenState createState() => _BeachDetailScreenState();
+  _HistoryDetailScreenState createState() => _HistoryDetailScreenState();
 }
 
-class _BeachDetailScreenState extends State<BeachDetailScreen> {
+class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
   bool isLiked = false; // Track the like status
   List<String> comments = []; // List to store the comments
   TextEditingController _commentController = TextEditingController(); // Controller for comment input
@@ -276,7 +273,7 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
             ),
             
             // Display additional images for Arugambay Beach
-            if (widget.name == "Arugambay Beach") ...[
+            if (widget.name == "Adams Peak") ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -285,10 +282,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     // Extra Images for Arugambay Beach
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/arugambe_1.jpg');
+                        _showLargeImage('images/adam_1.jpg');
                       },
                       child: Image.asset(
-                        'images/arugambe_1.jpg',
+                        'images/adam_1.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -296,10 +293,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/arugambay_2.jpg');
+                        _showLargeImage('images/adam_2.jpg');
                       },
                       child: Image.asset(
-                        'images/arugambay_2.jpg',
+                        'images/adam_2.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -307,10 +304,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/arugambay_3.jpg');
+                        _showLargeImage('images/adam_3.jpg');
                       },
                       child: Image.asset(
-                        'images/arugambay_3.jpg',
+                        'images/adam_3.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -318,10 +315,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/arugambay_4.jpg');
+                        _showLargeImage('images/adam_4.jpg');
                       },
                       child: Image.asset(
-                        'images/arugambay_4.jpg',
+                        'images/adam_4.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -330,7 +327,7 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                 ),
               ),
             ],
-            if (widget.name == "Jungle Beach") ...[
+            if (widget.name == "Dambulla Viharaya") ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -339,10 +336,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     // Extra Images for Arugambay Beach
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/jungle_1.jpg');
+                        _showLargeImage('images/dambulla_1.jpg');
                       },
                       child: Image.asset(
-                        'images/jungle_1.jpg',
+                        'images/dambulla_1.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -350,10 +347,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/jungle_2.jpg');
+                        _showLargeImage('images/dambulla_2.jpg');
                       },
                       child: Image.asset(
-                        'images/jungle_2.jpg',
+                        'images/dambulla_2.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -361,10 +358,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/jungle_3.jpg');
+                        _showLargeImage('images/dambulla_3.jpg');
                       },
                       child: Image.asset(
-                        'images/jungle_3.jpg',
+                        'images/dambulla_3.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -372,10 +369,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/jungle_4.jpg');
+                        _showLargeImage('images/dambulla_4.jpg');
                       },
                       child: Image.asset(
-                        'images/jungle_4.jpg',
+                        'images/dambulla_4.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -384,7 +381,7 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                 ),
               ),
             ],
-            if (widget.name == "Marble Beach") ...[
+            if (widget.name == "Rock Temple") ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -393,10 +390,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     // Extra Images for Arugambay Beach
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/marbel_1.jpg');
+                        _showLargeImage('images/rock_1.jpg');
                       },
                       child: Image.asset(
-                        'images/marbel_1.jpg',
+                        'images/rock_1.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -404,10 +401,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/marbel_2.jpg');
+                        _showLargeImage('images/rock_2.jpg');
                       },
                       child: Image.asset(
-                        'images/marbel_2.jpg',
+                        'images/rock_2.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -415,10 +412,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/marbel_3.jpg');
+                        _showLargeImage('images/rock_3.jpg');
                       },
                       child: Image.asset(
-                        'images/marbel_3.jpg',
+                        'images/rock_3.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -426,10 +423,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/marbel_4.jpg');
+                        _showLargeImage('images/rock_4.jpg');
                       },
                       child: Image.asset(
-                        'images/marbel_4.jpg',
+                        'images/rock_4.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -438,7 +435,7 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                 ),
               ),
             ],
-            if (widget.name == "Mirissa Beach") ...[
+            if (widget.name == "Isurumuniya Temple") ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -447,10 +444,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     // Extra Images for Arugambay Beach
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mirissa_1.jpg');
+                        _showLargeImage('images/isurumuni_1.jpg');
                       },
                       child: Image.asset(
-                        'images/mirissa_1.jpg',
+                        'images/isurumuni_1.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -458,10 +455,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mirissa_2.jpg');
+                        _showLargeImage('images/isurumuni_2.jpg');
                       },
                       child: Image.asset(
-                        'images/mirissa_2.jpg',
+                        'images/isurumuni_2.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -469,10 +466,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mirissa_3.jpg');
+                        _showLargeImage('images/isurumuni_3.jpg');
                       },
                       child: Image.asset(
-                        'images/mirissa_3.jpg',
+                        'images/isurumuni_3.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -480,10 +477,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mirissa_4.jpg');
+                        _showLargeImage('images/isurumuni_4.jpg');
                       },
                       child: Image.asset(
-                        'images/mirissa_4.jpg',
+                        'images/isurumuni_4.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -492,7 +489,7 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                 ),
               ),
             ],
-            if (widget.name == "Mount Lavinia Beach") ...[
+            if (widget.name == "Jaya Sri Maha Bhodiya") ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -501,10 +498,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     // Extra Images for Arugambay Beach
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mount_1.jpg');
+                        _showLargeImage('images/jayasri_1.jpg');
                       },
                       child: Image.asset(
-                        'images/mount_1.jpg',
+                        'images/jayasri_1.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -512,10 +509,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mount_2.jpg');
+                        _showLargeImage('images/jayasri_2.jpg');
                       },
                       child: Image.asset(
-                        'images/mount_2.jpg',
+                        'images/jayasri_2.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -523,10 +520,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/mount_3.jpg');
+                        _showLargeImage('images/jayasri_3.jpg');
                       },
                       child: Image.asset(
-                        'images/mount_3.jpg',
+                        'images/jayasri_3.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -534,10 +531,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('mount_4.jpg');
+                        _showLargeImage('jayasri_4.jpg');
                       },
                       child: Image.asset(
-                        'images/mount_4.jpg',
+                        'images/jayasri_4.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -546,7 +543,7 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                 ),
               ),
             ],
-            if (widget.name == "Unawatuna Beach") ...[
+            if (widget.name == "Sigiriya") ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -555,10 +552,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     // Extra Images for Arugambay Beach
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/unawatuna_1.jpg');
+                        _showLargeImage('images/sigiriya_1.jpg');
                       },
                       child: Image.asset(
-                        'images/unawatuna_1.jpg',
+                        'images/sigiriya_1.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -566,10 +563,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/unawatuna_2.jpg');
+                        _showLargeImage('images/sigiriya_2.jpg');
                       },
                       child: Image.asset(
-                        'images/unawatuna_2.jpg',
+                        'images/sigiriya_2.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -577,10 +574,10 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/unawatuna_3.jpg');
+                        _showLargeImage('images/sigiriya_3.jpg');
                       },
                       child: Image.asset(
-                        'images/unawatuna_3.jpg',
+                        'images/sigiriya_3.jpg',
                         width: 70,
                         height: 60,
                       ),
@@ -588,10 +585,64 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _showLargeImage('images/unawatuna_4.jpg');
+                        _showLargeImage('images/sigiriya_4.jpg');
                       },
                       child: Image.asset(
-                        'images/unawatuna_4.jpg',
+                        'images/sigiriya_4.jpg',
+                        width: 70,
+                        height: 60,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            if (widget.name == "Temple of the Tooth") ...[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Extra Images for Arugambay Beach
+                    GestureDetector(
+                      onTap: () {
+                        _showLargeImage('images/Tooth_1.jpg');
+                      },
+                      child: Image.asset(
+                        'images/Tooth_1.jpg',
+                        width: 70,
+                        height: 60,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        _showLargeImage('images/Tooth_2.jpg');
+                      },
+                      child: Image.asset(
+                        'images/Tooth_2.jpg',
+                        width: 70,
+                        height: 60,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        _showLargeImage('images/Tooth_3.jpg');
+                      },
+                      child: Image.asset(
+                        'images/Tooth_3.jpg',
+                        width: 70,
+                        height: 60,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        _showLargeImage('images/Tooth_4.jpg');
+                      },
+                      child: Image.asset(
+                        'images/Tooth_4.jpg',
                         width: 70,
                         height: 60,
                       ),

@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 
 import 'favorites_list_screen.dart';
 import 'home_screen.dart';
+import 'itinerary_planner_screen.dart';
+import 'settings_screen.dart';
 
 
 class ReviewAndRatingScreen extends StatefulWidget {
@@ -80,13 +82,26 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
     } else if (index == 1) {
      Navigator.pushReplacement(
         context,
-        MaterialPageRoute( builder: (context) => FavoritesListScreen(favorites: const [], favoriteDestinations: const [])),
+        MaterialPageRoute( builder: (context) => FavoritesListScreen(favoriteDestinations: [], favorites: [],),),
       ); // Navigate to Favorite Screen (This is a placeholder)
       // You can add your favorite screen logic here
     } else if (index == 2) {
       // Stay on the current Reviews Screen
     } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItineraryPlannerScreen(),
+        ),
+      );
       // Navigate to Settings Screen (This is a placeholder)
+      // You can add your settings screen logic here
+    }else if (index == 4) {
+      // Navigate to Settings Screen (This is a placeholder)
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SettingsScreen()),
+      );
       // You can add your settings screen logic here
     }
   }
@@ -333,9 +348,9 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
             icon: Icon(Icons.star, color: _selectedIndex == 2 ? Colors.teal : Colors.grey), // Color the rating icon
             label: 'Reviews',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
+         BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today), 
+          label: 'Itinerary Planner'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

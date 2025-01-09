@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class FavoritesListScreen extends StatefulWidget {
@@ -65,7 +66,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                 ),
                 child: Row(
                   children: [
-                    // Small Image
+                    // Small Image on the left
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
@@ -127,8 +128,6 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
     );
   }
 }
-
-
 
 class NatureDetailScreen extends StatelessWidget {
   final String name;
@@ -385,9 +384,3 @@ class CityDetailScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

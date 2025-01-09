@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'destination_list_screen.dart';
+import 'destination_list_screen_history.dart';
 import 'package:share_plus/share_plus.dart';
 
 
-class SearchScreenBeach extends StatefulWidget {
+class SearchScreenHistory extends StatefulWidget {
   final List<Map<String, String>> destinations;
 
-  const SearchScreenBeach({super.key, required this.destinations});
+  SearchScreenHistory({required this.destinations});
 
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreenBeach> {
+class _SearchScreenState extends State<SearchScreenHistory> {
   List<Map<String, String>> filteredDestinations = [];
   TextEditingController searchController = TextEditingController();
 
@@ -41,7 +41,7 @@ class _SearchScreenState extends State<SearchScreenBeach> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Search Destinations',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class _SearchScreenState extends State<SearchScreenBeach> {
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 42, 126, 91),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       backgroundColor: Colors.black,
       body: Column(
@@ -59,16 +59,16 @@ class _SearchScreenState extends State<SearchScreenBeach> {
             child: TextField(
               controller: searchController,
               onChanged: _filterDestinations,
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: 'Search Destinations...',
-                hintStyle: const TextStyle(color: Colors.white70),
+                hintStyle: TextStyle(color: Colors.white70),
                 filled: true,
                 fillColor: Colors.grey[800],
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                prefixIcon: const Icon(Icons.search, color: Colors.white),
+                prefixIcon: Icon(Icons.search, color: Colors.white),
               ),
             ),
           ),
@@ -83,7 +83,7 @@ class _SearchScreenState extends State<SearchScreenBeach> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BeachDetailScreen(
+                          builder: (context) => HistoryDetailScreen(
                             name: filteredDestinations[index]['name']!,
                             image: filteredDestinations[index]['image']!,
                             description: filteredDestinations[index]['description']!,
@@ -99,7 +99,7 @@ class _SearchScreenState extends State<SearchScreenBeach> {
                           BoxShadow(
                             color: Colors.black.withOpacity(0.3),
                             blurRadius: 5,
-                            offset: const Offset(0, 2),
+                            offset: Offset(0, 2),
                           ),
                         ],
                       ),
@@ -110,12 +110,12 @@ class _SearchScreenState extends State<SearchScreenBeach> {
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
                               children: [
-                                const Icon(Icons.favorite_border, color: Colors.grey),
-                                const SizedBox(width: 10),
+                                Icon(Icons.favorite_border, color: Colors.grey),
+                                SizedBox(width: 10),
                                 Text(
                                   filteredDestinations[index]['name']!,
-                                  style: const TextStyle(
-                                    color: Color.fromARGB(255, 70, 187, 142),
+                                  style: TextStyle(
+                                    color: const Color.fromARGB(255, 70, 187, 142),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                   ),
@@ -124,7 +124,7 @@ class _SearchScreenState extends State<SearchScreenBeach> {
                             ),
                           ),
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
+                            borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                             child: Image.asset(
                               filteredDestinations[index]['image']!,
                               width: double.infinity,
@@ -142,112 +142,6 @@ class _SearchScreenState extends State<SearchScreenBeach> {
           ),
         ],
       ),
-
-bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Reviews'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-        ],
-        selectedItemColor: Colors.teal,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          if (index == 1) {
-            // Navigate to the FavoritesListScreen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => FavoritesListScreen(
-                  favorites: const [],
-                  favoriteDestinations: const [],
-                ),
-              ),
-            );
-          } else if (index == 2) {
-            // Navigate to the ReviewAndRatingScreen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ReviewAndRatingScreen(
-                  title: 'Review & Rating',
-                ),
-              ),
-            );
-          } else if (index == 4) {
-            // Navigate to the SettingsScreen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SettingsScreen(),
-              ),
-            );
-          }
-        },
-      ),
-    );
-  }
-
-  void _showLargeImage(String imagePath) {
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        backgroundColor: Colors.black,
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.cover,
-        ),
-      ),
     );
   }
 }
-
-// Placeholder for other screens
-class FavoritesListScreen extends StatelessWidget {
-  final List favorites;
-  final List favoriteDestinations;
-
-  const FavoritesListScreen({required this.favorites, required this.favoriteDestinations});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Favorites')),
-      body: Center(child: Text('Favorites Screen')),
-    );
-  }
-}
-
-class ReviewAndRatingScreen extends StatelessWidget {
-  final String title;
-
-  const ReviewAndRatingScreen({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(child: Text('Review & Rating Screen')),
-    );
-  }
-}
-
-class SettingsScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Settings')),
-      body: Center(child: Text('Settings Screen')),
-    );
-  }
-}
-
-
-
-
-
-
-
-
