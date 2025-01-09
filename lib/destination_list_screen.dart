@@ -222,11 +222,11 @@ class _BeachDetailScreenState extends State<BeachDetailScreen> {
           widget.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white, // Set the name color to white
+            color: Colors.white, 
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 42, 126, 91),
-        iconTheme: IconThemeData(color: Colors.white), // Set the back icon to white
+        iconTheme: IconThemeData(color: Colors.white), 
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
