@@ -197,7 +197,7 @@ class CityDetailScreen extends StatefulWidget {
 
 class _CityDetailScreenState extends State<CityDetailScreen> {
   bool isLiked = false; // Track the like status
-  List<String> comments = []; // List to store the comments
+  List<String> comments = []; 
   TextEditingController _commentController = TextEditingController(); // Controller for comment input
 
   @override
@@ -322,7 +322,7 @@ class _CityDetailScreenState extends State<CityDetailScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // Extra Images for Arugambay Beach
+                    
                     GestureDetector(
                       onTap: () {
                         _showLargeImage('images/ella_1.jpg');

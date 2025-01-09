@@ -198,7 +198,7 @@ class NatureDetailScreen extends StatefulWidget {
 class _NatureDetailScreenState extends State<NatureDetailScreen> {
   bool isLiked = false; // Track the like status
   List<String> comments = []; // List to store the comments
-  TextEditingController _commentController = TextEditingController(); // Controller for comment input
+  TextEditingController _commentController = TextEditingController(); 
 
   @override
   Widget build(BuildContext context) {
@@ -208,11 +208,11 @@ class _NatureDetailScreenState extends State<NatureDetailScreen> {
           widget.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white, // Set the name color to white
+            color: Colors.white, 
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 42, 126, 91),
-        iconTheme: IconThemeData(color: Colors.white), // Set the back icon to white
+        iconTheme: IconThemeData(color: Colors.white), 
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -268,7 +268,7 @@ class _NatureDetailScreenState extends State<NatureDetailScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // Extra Images for Arugambay Beach
+                    
                     GestureDetector(
                       onTap: () {
                         _showLargeImage('images/horton_1.jpg');

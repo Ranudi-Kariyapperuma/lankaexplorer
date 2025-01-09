@@ -187,7 +187,7 @@ int _selectedIndex = 3; // Default to the "Reviews" page
                     ),
                   ),
 
-                // Input for Activity
+                
                 SizedBox(height: 10),
                 TextField(
                   style: TextStyle(color: Colors.black),
@@ -332,7 +332,7 @@ int _selectedIndex = 3; // Default to the "Reviews" page
       ),
       // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex, // Set current index based on selected tab
+        currentIndex: _selectedIndex, 
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
@@ -356,7 +356,7 @@ int _selectedIndex = 3; // Default to the "Reviews" page
             label: 'Settings',
           ),
         ],
-        selectedItemColor: Colors.teal, // Set active tab color
+        selectedItemColor: Colors.teal, 
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
       ),

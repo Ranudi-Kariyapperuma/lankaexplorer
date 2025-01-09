@@ -209,7 +209,7 @@ class HistoryDetailScreen extends StatefulWidget {
 class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
   bool isLiked = false; // Track the like status
   List<String> comments = []; // List to store the comments
-  TextEditingController _commentController = TextEditingController(); // Controller for comment input
+  TextEditingController _commentController = TextEditingController(); 
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +223,7 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 42, 126, 91),
-        iconTheme: IconThemeData(color: Colors.white), // Set the back icon to white
+        iconTheme: IconThemeData(color: Colors.white), 
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -279,7 +279,7 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // Extra Images for Arugambay Beach
+                    
                     GestureDetector(
                       onTap: () {
                         _showLargeImage('images/adam_1.jpg');
