@@ -129,6 +129,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
   }
 }
 
+// Nature
 class NatureDetailScreen extends StatelessWidget {
   final String name;
   final String image;
@@ -192,7 +193,7 @@ class NatureDetailScreen extends StatelessWidget {
     );
   }
 }
-
+// Beach
 class BeachDetailScreen extends StatelessWidget {
   final String name;
   final String image;
@@ -257,6 +258,7 @@ class BeachDetailScreen extends StatelessWidget {
   }
 }
 
+//History
 class HistoryDetailScreen extends StatelessWidget {
   final String name;
   final String image;
@@ -321,6 +323,7 @@ class HistoryDetailScreen extends StatelessWidget {
   }
 }
 
+//City
 class CityDetailScreen extends StatelessWidget {
   final String name;
   final String image;
