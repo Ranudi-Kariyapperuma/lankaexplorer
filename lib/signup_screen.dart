@@ -50,6 +50,17 @@ Future<void> _signUp() async {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("User signed up successfully")),
       );
+       // Reset the form fields after successful signup
+      setState(() {
+        _name = '';
+        _username = '';
+        _email = '';
+        _password = '';
+        _confirmPassword = '';
+      });
+
+    // Optionally, you can reset the form as well
+      _formKey.currentState?.reset();
     } on FirebaseAuthException catch (e) {
       String message = 'An error occurred';
       if (e.code == 'weak-password') {

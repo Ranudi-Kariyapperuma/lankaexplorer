@@ -4,7 +4,7 @@ import 'package:lankaexplorer/destination_list_screen.dart';
 import 'destination_list_screen_city.dart';
 import 'destination_list_screen_history.dart';
 import 'destination_list_screen_park.dart';
-import 'favorites_list_screen.dart';
+import 'detail_screen.dart';
 import 'itinerary_planner_screen.dart';
 import 'review_and_rating_screen.dart';
 import 'settings_screen.dart';
@@ -208,31 +208,6 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Search Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 8,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search destinations, trips...",
-                    prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(vertical: 15),
-                  ),
-                ),
-              ),
-            ),
 
             const SizedBox(height: 20),
 
@@ -304,55 +279,79 @@ SingleChildScrollView(
 ),
 
 
-            const SizedBox(height: 20),
-
-            // Top Travel Places
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: const Text(
-                "Top Travel Places",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.teal,
-                ),
+          // Top Travel Places
+// Top Travel Places
+Padding(
+  padding: const EdgeInsets.only(top: 24.0, left: 16.0, right: 16.0), // Added `top` padding for better spacing
+  child: const Text(
+    "Top Travel Places",
+    style: TextStyle(
+      fontSize: 22, // Slightly increased font size for better emphasis
+      fontWeight: FontWeight.bold,
+      color: Colors.teal,
+    ),
+  ),
+),
+const SizedBox(height: 20), // Adjusted spacing below the text
+ListView.builder(
+  shrinkWrap: true,
+  physics: const NeverScrollableScrollPhysics(),
+  itemCount: places.length,
+  itemBuilder: (context, index) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: GestureDetector(
+        onTap: () {
+          // Pass the selected place to the DetailScreen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(place: places[index]),
+            ),
+          );
+        },
+        child: Card(
+          color: const Color.fromARGB(255, 44, 47, 47), // Added a light teal background for the card
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                places[index]["image"]!,
+                width: 60,
+                height: 60,
+                fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 10),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: places.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                  child: Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          places[index]["image"]!,  // Use the dynamic image here
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      title: Text(places[index]["name"]!),
-                      subtitle: Text(places[index]["description"]!),
-                      trailing: const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                    ),
-                  ),
-                );
-              },
+            title: Text(
+              places[index]["name"]!,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(221, 227, 219, 219),
+              ),
             ),
-          ],
+            subtitle: Text(
+              places[index]["description"]!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Color.fromARGB(137, 241, 233, 233),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  },
+),
+
+
+
+          ]
         ),
       ),
 
@@ -360,7 +359,6 @@ SingleChildScrollView(
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Reviews'),
           BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: 'Itinerary Planner'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
@@ -370,16 +368,7 @@ SingleChildScrollView(
   unselectedItemColor: Colors.grey,
   type: BottomNavigationBarType.fixed,
   onTap: (index) {
-    if (index == 1) {
-      // Navigate to the FavoritesListScreen when the 'Favorites' tab is clicked
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => FavoritesListScreen(favoriteDestinations: [], favorites: [],
-          ),
-        ),
-      );
-    } else if (index == 2) {
+    if (index == 1)  {
       // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
       Navigator.push(
         context,
@@ -389,7 +378,7 @@ SingleChildScrollView(
           ),
         ),
       );
-    }else if (index == 4) {
+    }else if (index == 3) {
       // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
       Navigator.push(
         context,
@@ -397,7 +386,7 @@ SingleChildScrollView(
           builder: (context) => SettingsScreen(),
         ),
       );
-    }else if (index == 3) {
+    }else if (index == 2) {
       // Navigate to the ReviewAndRatingScreen when the 'Reviews' tab is clicked
       Navigator.push(
         context,

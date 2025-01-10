@@ -1,5 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart'; 
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Ticket Booking App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: TicketBookingScreen(),
+    );
+  }
+}
 
 class TicketBookingScreen extends StatefulWidget {
   @override
@@ -13,8 +34,10 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
   String _selectedTransport = 'Bus';
 
   final List<String> _transportOptions = ['Bus', 'Train', 'Activity'];
-  final List<Map<String, String>> _bookings = []; // To store booking details
-
+  
+  // Firebase Realtime Database reference
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref().child('bookings');
+  
   // Date formatting
   final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
 
@@ -52,9 +75,7 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
-                onPressed: () {
-                  _saveBooking();
-                },
+                onPressed: _saveBooking,
                 child: Text('Book Ticket'),
               ),
             ),
@@ -166,46 +187,93 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
   }
 
   Widget _buildBookingsList() {
-    if (_bookings.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: Text(
-          'No bookings yet. Start by booking a ticket!',
-          style: TextStyle(color: Colors.white70),
-        ),
-      );
-    }
+    return StreamBuilder(
+      stream: _dbRef.onValue,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        }
 
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _bookings.length,
-        itemBuilder: (context, index) {
-          final booking = _bookings[index];
-          return Card(
-            color: Colors.grey[800],
-            margin: EdgeInsets.symmetric(vertical: 8.0),
-            child: ListTile(
-              leading: Icon(
-                Icons.confirmation_num,
-                color: Colors.redAccent,
-              ),
-              title: Text(
-                '${booking['transport']} to ${booking['destination']}',
-                style: TextStyle(color: Colors.white),
-              ),
-              subtitle: Text(
-                'Date: ${booking['date']} - Time: ${booking['time']}',
-                style: TextStyle(color: Colors.white70),
-              ),
-              trailing: Icon(
-                Icons.check_circle,
-                color: Colors.greenAccent,
-              ),
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+
+        final data = snapshot.data?.snapshot?.value;
+        if (data == null) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              'No bookings yet. Start by booking a ticket!',
+              style: TextStyle(color: Colors.white70),
             ),
           );
-        },
-      ),
+        }
+
+        // Cast the data to Map<String, dynamic>
+        Map<dynamic, dynamic> bookingsData = data as Map<dynamic, dynamic>;
+
+        // Convert the data into a list of bookings
+        List<Map<String, String>> bookings = [];
+        bookingsData.forEach((key, value) {
+          bookings.add({
+            'id': key, // Store the Firebase ID for deletion
+            'transport': value['transport'] ?? 'Unknown', // Handle null by providing default values
+            'destination': value['destination'] ?? 'Unknown',
+            'date': value['date'] ?? 'Unknown',
+            'time': value['time'] ?? 'Unknown',
+          });
+        });
+
+        return Expanded(
+          child: ListView.builder(
+            itemCount: bookings.length,
+            itemBuilder: (context, index) {
+              final booking = bookings[index];
+              return Card(
+                color: Colors.grey[800],
+                margin: EdgeInsets.symmetric(vertical: 8.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.confirmation_num,
+                    color: Colors.redAccent,
+                  ),
+                  title: Text(
+                    '${booking['transport']} to ${booking['destination']}',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    'Date: ${booking['date']} - Time: ${booking['time']}',
+                    style: TextStyle(color: Colors.white70),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                    onPressed: () => _deleteBooking(booking['id']),
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
+  }
+
+  // Function to delete a booking
+  void _deleteBooking(String? id) {
+    if (id != null) {
+      _dbRef.child(id).remove().then((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Booking deleted successfully!')),
+        );
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error deleting booking: $error')),
+        );
+      });
+    }
   }
 
   void _saveBooking() {
@@ -220,14 +288,12 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
       return;
     }
 
-    // Save booking
-    setState(() {
-      _bookings.add({
-        'transport': _selectedTransport,
-        'destination': destination,
-        'date': date,
-        'time': time,
-      });
+    // Save booking to Firebase Realtime Database
+    _dbRef.push().set({
+      'transport': _selectedTransport,
+      'destination': destination,
+      'date': date,
+      'time': time,
     });
 
     // Clear input fields

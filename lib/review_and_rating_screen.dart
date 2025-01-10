@@ -36,7 +36,7 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
     },
   ];
 
-  int _selectedIndex = 2; 
+  int _selectedIndex = 1; 
 
   void _submitReview() {
     if (_reviewController.text.isNotEmpty && _nameController.text.isNotEmpty && _rating > 0) {
@@ -79,15 +79,9 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
-    } else if (index == 1) {
-     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute( builder: (context) => FavoritesListScreen(favoriteDestinations: [], favorites: [],),),
-      ); // Navigate to Favorite Screen (This is a placeholder)
-      // You can add your favorite screen logic here
-    } else if (index == 2) {
+    }  else if (index == 1) {
       // Stay on the current Reviews Screen
-    } else if (index == 3) {
+    } else if (index == 2) {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -96,7 +90,7 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
       );
       // Navigate to Settings Screen (This is a placeholder)
       // You can add your settings screen logic here
-    }else if (index == 4) {
+    }else if (index == 3) {
       // Navigate to Settings Screen (This is a placeholder)
       Navigator.pushReplacement(
         context,
@@ -341,11 +335,7 @@ class _ReviewAndRatingScreenState extends State<ReviewAndRatingScreen> {
             backgroundColor: _selectedIndex == 0 ? Colors.teal : Colors.black,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star, color: _selectedIndex == 2 ? Colors.teal : Colors.grey), // Color the rating icon
+            icon: Icon(Icons.star, color: _selectedIndex == 1 ? Colors.teal : Colors.grey), // Color the rating icon
             label: 'Reviews',
           ),
          BottomNavigationBarItem(

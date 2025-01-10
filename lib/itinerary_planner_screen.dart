@@ -13,7 +13,7 @@ class ItineraryPlannerScreen extends StatefulWidget {
 
 class _ItineraryPlannerScreenState extends State<ItineraryPlannerScreen> {
 
-int _selectedIndex = 3; // Default to the "Reviews" page
+int _selectedIndex = 2; // Default to the "Reviews" page
 
  void _onItemTapped(int index) {
     setState(() {
@@ -26,19 +26,13 @@ int _selectedIndex = 3; // Default to the "Reviews" page
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
-    } else if (index == 1) {
-     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute( builder: (context) => FavoritesListScreen(favoriteDestinations: [], favorites: [],)),
-      ); // Navigate to Favorite Screen (This is a placeholder)
-      // You can add your favorite screen logic here
-    } else if (index == 2) {
+    }  else if (index == 1) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ReviewAndRatingScreen(title: 'Review & Rating')),
       );
       // Stay on the current Reviews Screen
-    } else if (index == 3) {
+    } else if (index == 2) {
         Navigator.push(
         context,
         MaterialPageRoute(
@@ -47,7 +41,7 @@ int _selectedIndex = 3; // Default to the "Reviews" page
       );
       // Navigate to Settings Screen (This is a placeholder)
       // You can add your settings screen logic here
-     }else if (index == 4) {
+     }else if (index == 3) {
       // Navigate to Settings Screen (This is a placeholder)
       Navigator.pushReplacement(
         context,
@@ -338,10 +332,6 @@ int _selectedIndex = 3; // Default to the "Reviews" page
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.star), 

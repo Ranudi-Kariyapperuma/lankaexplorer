@@ -1,19 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert'; // To encode/decode JSON data
 
-class PublicTransportScreen extends StatelessWidget {
-  final List<Map<String, String>> busSchedule = [
-    {'Route': 'Colombo - Kandy', 'Time': '06:00 AM'},
-    {'Route': 'Galle - Colombo', 'Time': '07:30 AM'},
-    {'Route': 'Jaffna - Colombo', 'Time': '08:45 AM'},
-    {'Route': 'Matara - Colombo', 'Time': '10:15 AM'},
-  ];
+class PublicTransportScreen extends StatefulWidget {
+  @override
+  _PublicTransportScreenState createState() => _PublicTransportScreenState();
+}
 
-  final List<Map<String, String>> trainSchedule = [
-    {'Route': 'Colombo - Badulla', 'Time': '05:30 AM'},
-    {'Route': 'Kandy - Colombo', 'Time': '07:00 AM'},
-    {'Route': 'Matara - Colombo', 'Time': '09:00 AM'},
-    {'Route': 'Jaffna - Colombo', 'Time': '01:00 PM'},
-  ];
+class _PublicTransportScreenState extends State<PublicTransportScreen> {
+  late List<Map<String, String>> busSchedule;
+  late List<Map<String, String>> trainSchedule;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSchedules();
+  }
+
+  // Load schedules from shared preferences or default values if not available
+  _loadSchedules() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? busScheduleJson = prefs.getString('busSchedule');
+    String? trainScheduleJson = prefs.getString('trainSchedule');
+
+    if (busScheduleJson != null && trainScheduleJson != null) {
+      // Decode JSON if available
+      setState(() {
+        busSchedule = List<Map<String, String>>.from(json.decode(busScheduleJson));
+        trainSchedule = List<Map<String, String>>.from(json.decode(trainScheduleJson));
+      });
+    } else {
+      // If not available, use default values
+      setState(() {
+        busSchedule = [
+          {'Route': 'Colombo - Kandy', 'Time': '06:00 AM'},
+          {'Route': 'Galle - Colombo', 'Time': '07:30 AM'},
+          {'Route': 'Jaffna - Colombo', 'Time': '08:45 AM'},
+          {'Route': 'Matara - Colombo', 'Time': '10:15 AM'},
+        ];
+
+        trainSchedule = [
+          {'Route': 'Colombo - Badulla', 'Time': '05:30 AM'},
+          {'Route': 'Kandy - Colombo', 'Time': '07:00 AM'},
+          {'Route': 'Matara - Colombo', 'Time': '09:00 AM'},
+          {'Route': 'Jaffna - Colombo', 'Time': '01:00 PM'},
+        ];
+      });
+    }
+  }
+
+  // Save schedules to shared preferences
+  _saveSchedules() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('busSchedule', json.encode(busSchedule));
+    prefs.setString('trainSchedule', json.encode(trainSchedule));
+  }
 
   @override
   Widget build(BuildContext context) {

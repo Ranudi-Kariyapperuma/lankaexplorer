@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import for date formatting
+import 'package:intl/intl.dart'; 
+import 'package:firebase_database/firebase_database.dart'; // Import Firebase Realtime Database
 
 class RideSharingScreen extends StatefulWidget {
   @override
@@ -11,8 +12,44 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController(); // Time controller
 
-  List<Map<String, String>> _bookings = []; // List to store booking details
+  List<Map<String, String?>> _bookings = []; // List to store booking details 
   String _selectedService = '';
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref('bookings'); // Firebase reference
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBookings(); // Load existing bookings from Firebase
+  }
+
+  // Load bookings from Firebase
+  Future<void> _loadBookings() async {
+    _dbRef.onValue.listen((DatabaseEvent event) {
+      final data = event.snapshot.value as Map?;
+      if (data != null) {
+        setState(() {
+          _bookings.clear();
+          data.forEach((key, value) {
+            _bookings.add(Map<String, String?>.from(value)..['id'] = key); // Add Firebase ID as 'id' key
+          });
+        });
+      }
+    });
+  }
+
+  // Method to delete booking from Firebase and the UI
+  void _deleteBooking(String? bookingId) async {
+    try {
+      if (bookingId != null) {
+        await _dbRef.child(bookingId).remove(); // Remove booking from Firebase
+        setState(() {
+          _bookings.removeWhere((booking) => booking['id'] == bookingId); // Remove booking from local list
+        });
+      }
+    } catch (e) {
+      print("Error deleting booking: $e"); // Debug error if deletion fails
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -203,23 +240,34 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Date: ${_dateController.text}', style: TextStyle(color: const Color.fromARGB(255, 255, 248, 248))),
+              Text('Date: ${_dateController.text}', style: TextStyle(color: Colors.white)),
               SizedBox(height: 8),
-              Text('Time: ${_timeController.text}', style: TextStyle(color: const Color.fromARGB(255, 255, 248, 248))),
+              Text('Time: ${_timeController.text}', style: TextStyle(color: Colors.white)),
               SizedBox(height: 8),
-              Text('Service: $serviceName', style: TextStyle(color:const Color.fromARGB(255, 255, 248, 248))),
+              Text('Service: $serviceName', style: TextStyle(color: Colors.white)),
             ],
           ),
           actions: [
             TextButton(
               onPressed: () {
+                // Save booking to Firebase
+                final newBookingRef = _dbRef.push(); // Create a new unique reference for the booking
+                newBookingRef.set({
+                  'service': serviceName,
+                  'date': _dateController.text,
+                  'time': _timeController.text,
+                });
+
+                // Add booking to local list with generated ID
                 setState(() {
                   _bookings.add({
+                    'id': newBookingRef.key, // Assign Firebase generated key as ID
                     'service': serviceName,
                     'date': _dateController.text,
                     'time': _timeController.text,
                   });
                 });
+
                 Navigator.of(context).pop();
               },
               child: Text('Confirm'),
@@ -261,6 +309,13 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
             title: Text(
               '${booking['service']} - ${booking['date']} at ${booking['time']}',
               style: TextStyle(color: Colors.white),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.delete, color: Colors.redAccent),
+              onPressed: () {
+                // Call the delete method when the delete icon is tapped
+                _deleteBooking(booking['id']);
+              },
             ),
           ),
         );

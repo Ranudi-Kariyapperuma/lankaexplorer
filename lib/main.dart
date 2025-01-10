@@ -5,6 +5,7 @@ import 'destination_list_screen.dart';
 import 'destination_list_screen_city.dart';
 import 'destination_list_screen_history.dart';
 import 'destination_list_screen_park.dart';
+import 'detail_screen.dart';
 import 'favorites_list_screen.dart';
 import 'itinerary_planner_screen.dart';
 import 'public_transport_screen.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
         '/travel_tips': (context) => TravelTipsScreen(), // Add route for the travel tips screen
         '/booking': (context) => BookingScreen(serviceName: '',), // Add route for the booking screen
         '/favourites_list': (context) => FavoritesListScreen(favoriteDestinations: [], favorites: [],), // Add route for the favourites list screen
-       
+        '/detail': (context) => DetailScreen(place: {}), // Add route for the detail screen
         
       
       },
