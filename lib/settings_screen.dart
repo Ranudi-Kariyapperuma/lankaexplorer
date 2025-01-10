@@ -169,6 +169,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     savedImageFile = imageFile;
                   });
                    _saveProfile(fullName, email, imageFile, dataSharingEnabled, notificationsEnabled);
+                   // Show notification 
+                  if (notificationsEnabled) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Profile updated'),
+                        duration: Duration(seconds: 2),
+                        backgroundColor: Colors.teal,
+                      ),
+                    );
+                  }
                 },
               ),
             ),
@@ -207,6 +217,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     dataSharingEnabled = value;
                   });
                   _saveProfile(savedFullName, savedEmail, savedImageFile, dataSharingEnabled, notificationsEnabled);
+
+                   // Show notification 
+                  if (notificationsEnabled) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(dataSharingEnabled ? 'Privacy button is turned on' : 'Privacy button is turned off'),
+                        duration: const Duration(seconds: 2),
+                        backgroundColor: Colors.teal,
+                      ),
+                    );
+                  }
                 },
               ),
             ),
@@ -530,6 +551,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
     );
   }
 }
+
 
 
 
