@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; 
+import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart'; // Import Firebase Realtime Database
 
 class RideSharingScreen extends StatefulWidget {
@@ -12,14 +12,21 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController(); // Time controller
 
-  List<Map<String, String?>> _bookings = []; // List to store booking details 
+  List<Map<String, String?>> _bookings = []; // List to store booking details
   String _selectedService = '';
   final DatabaseReference _dbRef = FirebaseDatabase.instance.ref('bookings'); // Firebase reference
 
   @override
   void initState() {
     super.initState();
+    _enableOfflinePersistence(); // Enable offline mode
     _loadBookings(); // Load existing bookings from Firebase
+  }
+
+  // Enable offline persistence
+  void _enableOfflinePersistence() {
+    FirebaseDatabase.instance.setPersistenceEnabled(true); // Enable persistence
+    FirebaseDatabase.instance.setPersistenceCacheSizeBytes(10000000); // Set cache size (optional)
   }
 
   // Load bookings from Firebase
@@ -217,7 +224,7 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
         ),
         subtitle: Text(
           description,
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: const Color.fromARGB(179, 255, 242, 242)),
         ),
         onTap: () {
           setState(() {
@@ -240,11 +247,11 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Date: ${_dateController.text}', style: TextStyle(color: Colors.white)),
+              Text('Date: ${_dateController.text}', style: TextStyle(color: const Color.fromARGB(255, 255, 251, 251))),
               SizedBox(height: 8),
-              Text('Time: ${_timeController.text}', style: TextStyle(color: Colors.white)),
+              Text('Time: ${_timeController.text}', style: TextStyle(color: const Color.fromARGB(255, 255, 251, 251))),
               SizedBox(height: 8),
-              Text('Service: $serviceName', style: TextStyle(color: Colors.white)),
+              Text('Service: $serviceName', style: TextStyle(color: const Color.fromARGB(255, 253, 250, 250))),
             ],
           ),
           actions: [
@@ -256,16 +263,6 @@ class _RideSharingScreenState extends State<RideSharingScreen> {
                   'service': serviceName,
                   'date': _dateController.text,
                   'time': _timeController.text,
-                });
-
-                // Add booking to local list with generated ID
-                setState(() {
-                  _bookings.add({
-                    'id': newBookingRef.key, // Assign Firebase generated key as ID
-                    'service': serviceName,
-                    'date': _dateController.text,
-                    'time': _timeController.text,
-                  });
                 });
 
                 Navigator.of(context).pop();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:intl/intl.dart'; 
+import 'package:intl/intl.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -34,12 +34,23 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
   String _selectedTransport = 'Bus';
 
   final List<String> _transportOptions = ['Bus', 'Train', 'Activity'];
-  
+
   // Firebase Realtime Database reference
   final DatabaseReference _dbRef = FirebaseDatabase.instance.ref().child('bookings');
-  
+
   // Date formatting
   final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
+
+  @override
+  void initState() {
+    super.initState();
+    _enableOfflinePersistence();
+  }
+
+  void _enableOfflinePersistence() {
+    FirebaseDatabase.instance.setPersistenceEnabled(true);
+    FirebaseDatabase.instance.setPersistenceCacheSizeBytes(10000000); // Optional: Set cache size
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +81,7 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
             SizedBox(height: 16),
             _buildDateField(),
             SizedBox(height: 16),
-            _buildTextField('Time (HH:MM)', _timeController, Icons.access_time),
+            _buildTimeField(),
             SizedBox(height: 16),
             Center(
               child: ElevatedButton(
@@ -140,7 +151,6 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
     );
   }
 
-  // Date picker field with calendar
   Widget _buildDateField() {
     return GestureDetector(
       onTap: _selectDate,
@@ -164,7 +174,6 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
     );
   }
 
-  // Open Date Picker Dialog
   Future<void> _selectDate() async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -181,7 +190,49 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
 
     if (pickedDate != null) {
       setState(() {
-        _dateController.text = _dateFormat.format(pickedDate); // Format selected date
+        _dateController.text = _dateFormat.format(pickedDate);
+      });
+    }
+  }
+
+  Widget _buildTimeField() {
+    return GestureDetector(
+      onTap: _selectTime,
+      child: AbsorbPointer(
+        child: TextField(
+          controller: _timeController,
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            labelText: 'Time (HH:MM)',
+            labelStyle: TextStyle(color: Colors.white70),
+            prefixIcon: Icon(Icons.access_time, color: Colors.white70),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white70),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.redAccent),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _selectTime() async {
+    final TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.dark(),
+          child: child!,
+        );
+      },
+    );
+
+    if (pickedTime != null) {
+      setState(() {
+        _timeController.text = pickedTime.format(context);
       });
     }
   }
@@ -209,15 +260,12 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
           );
         }
 
-        // Cast the data to Map<String, dynamic>
         Map<dynamic, dynamic> bookingsData = data as Map<dynamic, dynamic>;
-
-        // Convert the data into a list of bookings
         List<Map<String, String>> bookings = [];
         bookingsData.forEach((key, value) {
           bookings.add({
-            'id': key, // Store the Firebase ID for deletion
-            'transport': value['transport'] ?? 'Unknown', // Handle null by providing default values
+            'id': key,
+            'transport': value['transport'] ?? 'Unknown',
             'destination': value['destination'] ?? 'Unknown',
             'date': value['date'] ?? 'Unknown',
             'time': value['time'] ?? 'Unknown',
@@ -261,7 +309,6 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
     );
   }
 
-  // Function to delete a booking
   void _deleteBooking(String? id) {
     if (id != null) {
       _dbRef.child(id).remove().then((_) {
@@ -288,7 +335,6 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
       return;
     }
 
-    // Save booking to Firebase Realtime Database
     _dbRef.push().set({
       'transport': _selectedTransport,
       'destination': destination,
@@ -296,7 +342,6 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
       'time': time,
     });
 
-    // Clear input fields
     _destinationController.clear();
     _dateController.clear();
     _timeController.clear();
@@ -304,7 +349,6 @@ class _TicketBookingScreenState extends State<TicketBookingScreen> {
       _selectedTransport = 'Bus';
     });
 
-    // Show success message
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Booking added successfully!')),
     );
