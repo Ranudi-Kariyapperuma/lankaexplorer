@@ -1,13 +1,14 @@
 # 🌍 LankaExplorer
 
-LankaExplorer is a Flutter-based mobile application designed to enhance the travel experience for tourists visiting Sri Lanka. The app provides a wide range of features, including itinerary planning, destination details, and real-time location tracking. It uses Firebase for authentication and supports offline capabilities for seamless usability.
+LankaExplorer is a Flutter-based mobile application designed to enhance the travel experience for tourists visiting Sri Lanka. The app provides a wide range of features, including itinerary planning, destination details, and real-time transportation services. It uses Firebase for authentication and supports offline capabilities for seamless usability.
 
 ## 📋 Table of Contents
 - [📱 Screens](#screens)
 - [✨ Features](#features)
 - [🔗 Backend](#backend)
 - [📦 State Management](#state-management)
-- [🛠️ Custom Components](#custom-components)
+- [📽️ Demo Video](#demo-video)
+- [📂 APK Download](#apk-download)
 - [👥 Team Members](#team-members)
 - [⚙️ Installation](#installation)
 
@@ -20,7 +21,7 @@ LankaExplorer is a Flutter-based mobile application designed to enhance the trav
 6. 🗺️ Destination Details Screen
 7. 🗓️ Itinerary Planner Screen
 8. 🎭 Activities and Experiences Screen
-9. 🗾 Map and Location Screen
+9. 🚗 Transportation Services Screen
 10. ⭐ Reviews and Ratings Screen
 11. ❤️ Favorites Screen
 12. 🔍 Search Results Screen
@@ -30,22 +31,29 @@ LankaExplorer is a Flutter-based mobile application designed to enhance the trav
 - **🔑 Firebase Authentication**: Secure sign-in and sign-up functionality.
 - **📍 Destination Management**: View, search, and manage favorite destinations.
 - **🗓️ Itinerary Planner**: Create and manage custom travel itineraries.
-- **📶 Offline Capabilities**: Partial offline data access for enhanced usability.
-- **🗺️ Interactive Map**: Real-time location tracking and navigation.
+- **📶 Offline Capabilities**: Partial offline data access for enhanced usability on the following screens:
+  - Transportation Services Screen
+  - Settings Screen
+  - Destination Screen
+- **🚗 Real-Time Transportation Services**: View and manage transportation options for your travel plans.
 - **🛠️ Custom Components**: Implementation of unique UI components for enhanced user experience.
 - **⭐ Reviews and Ratings**: Submit and view reviews for destinations.
 
 ## 🔗 Backend
 - **🔥 Firebase**: Used for authentication and real-time data management.
-- **📂 Firestore/Realtime Database**: Stores destination details, user data, and reviews.
+- **📂 Firestore/Realtime Database**: Stores destination details, transportation data, user information, and reviews.
 
 ## 📦 State Management
 - **🛠️ Provider**: Utilized for managing application state and ensuring efficient data flow between widgets.
 
-## 🛠️ Custom Components
-The application includes the following custom components:
-- 🖼️ Custom Destination Cards
-- 🗓️ Interactive Itinerary Planner Widgets
+
+## 📽️ Demo Video
+Watch a demonstration of LankaExplorer in action:
+[![LankaExplorer Demo Video](https://img.youtube.com/vi/your_video_id/maxresdefault.jpg)](https://youtu.be/your_video_id)
+
+## 📂 APK Download
+Download the final APK to experience LankaExplorer:
+[Download LankaExplorer APK](https://drive.google.com/file/d/1ZbWkWizzed9NRCAcU8JDN-rcjNjNkC3u/view?usp=sharing)
 
 ## 👥 Team Members
 - [Himasha](https://github.com/Himasha800)
@@ -68,4 +76,4 @@ The application includes the following custom components:
 4. Run the application:
    ```bash
    flutter run
-   ```
+   
