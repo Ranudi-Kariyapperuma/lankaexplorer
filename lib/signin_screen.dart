@@ -150,36 +150,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  // Forgot Password
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                        // Navigate to Forgot Password Page
-                      },
-                      child: Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  // Divider with "or"
-                  Row(
-                    children: [
-                      Expanded(child: Divider(color: Colors.grey)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          "or",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                      Expanded(child: Divider(color: Colors.grey)),
-                    ],
-                  ),
+                 
+                 
                   SizedBox(height: 10),
                   // Register Now
                   Center(

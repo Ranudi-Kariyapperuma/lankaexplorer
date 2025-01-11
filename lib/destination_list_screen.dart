@@ -78,7 +78,9 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => favorites.FavoritesListScreen(favoriteDestinations: favoriteDestinations, favorites: [],),
+                  builder: (context) => FavoritesListScreen(
+          favoriteDestinations: favoriteDestinations, favorites: [],
+        ),
                 ),
               );
             },
