@@ -61,7 +61,7 @@ The application includes the following custom components:
 
 ## 📽️ Demo Video
 Watch a demonstration of LankaExplorer in action:
-[![LankaExplorer Demo Video](https://img.youtube.com/vi/your_video_id/maxresdefault.jpg)](https://youtu.be/your_video_id)
+[![LankaExplorer Demo Video](https://github.com/user-attachments/assets/cc79059d-18d8-415d-bd07-4b832ba44209)
 
 ## 📂 APK Download
 Download the final APK to experience LankaExplorer:
