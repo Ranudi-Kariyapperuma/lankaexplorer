@@ -3,10 +3,11 @@
 ![LankaExplorer Header](https://github.com/user-attachments/assets/db7f48a1-44bc-4c5c-aa84-78db6c7720b5)
 
 # 🌍 LankaExplorer
+</div>
 
 LankaExplorer is your ultimate travel companion for exploring the beautiful island of Sri Lanka. Designed to elevate your travel experience, this Flutter-based mobile application offers a suite of features such as itinerary planning, detailed destination information, and real-time transportation services. With robust Firebase integration for authentication and offline access, LankaExplorer ensures seamless usability anytime, anywhere. Whether you're a first-time visitor or a seasoned traveler, LankaExplorer makes discovering Sri Lanka effortless and enjoyable.
 
-</div>
+
 
 
 ## 📋 Table of Contents
