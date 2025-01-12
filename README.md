@@ -1,12 +1,20 @@
+<div align="center">
+
+![LankaExplorer Header](https://github.com/user-attachments/assets/db7f48a1-44bc-4c5c-aa84-78db6c7720b5)
+
 # 🌍 LankaExplorer
 
-LankaExplorer is a Flutter-based mobile application designed to enhance the travel experience for tourists visiting Sri Lanka. The app provides a wide range of features, including itinerary planning, destination details, and real-time transportation services. It uses Firebase for authentication and supports offline capabilities for seamless usability.
+LankaExplorer is your ultimate travel companion for exploring the beautiful island of Sri Lanka. Designed to elevate your travel experience, this Flutter-based mobile application offers a suite of features such as itinerary planning, detailed destination information, and real-time transportation services. With robust Firebase integration for authentication and offline access, LankaExplorer ensures seamless usability anytime, anywhere. Whether you're a first-time visitor or a seasoned traveler, LankaExplorer makes discovering Sri Lanka effortless and enjoyable.
+
+</div>
+
 
 ## 📋 Table of Contents
 - [📱 Screens](#screens)
 - [✨ Features](#features)
 - [🔗 Backend](#backend)
 - [📦 State Management](#state-management)
+- [🛠️ Custom Components](#custom-components)
 - [📽️ Demo Video](#demo-video)
 - [📂 APK Download](#apk-download)
 - [👥 Team Members](#team-members)
@@ -46,6 +54,10 @@ LankaExplorer is a Flutter-based mobile application designed to enhance the trav
 ## 📦 State Management
 - **🛠️ Provider**: Utilized for managing application state and ensuring efficient data flow between widgets.
 
+## 🛠️ Custom Components
+The application includes the following custom components:
+- 🖼️ Custom Destination Cards
+- 🗓️ Interactive Itinerary Planner Widgets
 
 ## 📽️ Demo Video
 Watch a demonstration of LankaExplorer in action:
@@ -56,9 +68,9 @@ Download the final APK to experience LankaExplorer:
 [Download LankaExplorer APK](https://drive.google.com/file/d/1ZbWkWizzed9NRCAcU8JDN-rcjNjNkC3u/view?usp=sharing)
 
 ## 👥 Team Members
-- [Himasha](https://github.com/Himasha800)
-- [Ranudi](https://github.com/Ranudi-Kariyapperuma)
-- [Bimali](https://github.com/Bimali31)
+- [H.M. Himasha Devindi Herath ](https://github.com/Himasha800)
+- [Ranudi Kariyapperuma](https://github.com/Ranudi-Kariyapperuma)
+- [Bimali Dharshika](https://github.com/Bimali31)
 
 ## ⚙️ Installation
 1. Clone the repository:
@@ -76,4 +88,4 @@ Download the final APK to experience LankaExplorer:
 4. Run the application:
    ```bash
    flutter run
-   
+   ```
