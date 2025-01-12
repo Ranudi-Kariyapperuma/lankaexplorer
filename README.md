@@ -60,8 +60,14 @@ The application includes the following custom components:
 - 🗓️ Interactive Itinerary Planner Widgets
 
 ## 📽️ Demo Video
-Watch a demonstration of LankaExplorer in action:
+<div align="center">
+
+## 📽️ Demo Video  
+
 https://github.com/user-attachments/assets/cc79059d-18d8-415d-bd07-4b832ba44209
+
+
+</div>
 
 ## 📂 APK Download
 Download the final APK to experience LankaExplorer:
